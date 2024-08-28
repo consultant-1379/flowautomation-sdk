@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>${groupId}</groupId>
+        <artifactId>${rootArtifactId}</artifactId>
+        <version>${version}</version>
+    </parent>
+    <artifactId>${rootArtifactId}-flow</artifactId>
+    <packaging>jar</packaging>
+    <name>[${artifactId}] JAR module</name>
+
+    <properties>
+        <version.java>8</version.java>
+        <version.flowautomation.services>1.39.1</version.flowautomation.services>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ericsson.oss.services.flowautomation</groupId>
+            <artifactId>flowautomation-service-flow-api</artifactId>
+            <version>${version.flowautomation.services}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.flowautomation</groupId>
+            <artifactId>flowautomation-service-test-framework</artifactId>
+            <version>${version.flowautomation.services}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.camunda.bpm.extension.mockito</groupId>
+            <artifactId>camunda-bpm-mockito</artifactId>
+            <version>3.2.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <!-- Zip Packing -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <finalName>${artifactId}</finalName>
+                            <outputDirectory>target/</outputDirectory>
+                            <descriptors>
+                                <descriptor>/src/main/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                        <id>make-assembly</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.10.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compileTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <testSources>
+                        <testSource>
+                            <directory>${project.basedir}/src/test/java</directory>
+                            <includes>
+                                <include>**/*.groovy</include>
+                            </includes>
+                        </testSource>
+                    </testSources>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy</artifactId>
+                        <!-- any version of Groovy \>= 1.5.0 should work here -->
+                        <version>3.0.5</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>    
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>regex-property</id>
+                        <goals>
+                            <goal>regex-property</goal>
+                        </goals>
+                        <configuration>
+                            <name>flow.version</name>
+                            <value>${project.version}</value>
+                            <regex>\.([0-9]+)-SNAPSHOT</regex>
+                            <replacement>.$1</replacement>
+                            <failIfNoMatch>false</failIfNoMatch>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

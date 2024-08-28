@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+                      xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+                      name="${artifactId}">
+
+    <requiredProperties>
+        <requiredProperty key="version">
+            <defaultValue>1.0.0-SNAPSHOT</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="CXP"/> <!-- CXP75XXXXXX -->
+        <requiredProperty key="flowPackage"/> <!-- ERIC<helloworld>_CXP.. -->
+    </requiredProperties>
+
+    <modules>
+        <module id="${rootArtifactId}-flow" dir="__rootArtifactId__-flow" name="${rootArtifactId}-flow">
+            <fileSets>
+                <fileSet encoding="UTF-8">
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>**/*.*</include>
+                    </includes>
+                </fileSet>
+                <fileSet encoding="UTF-8">
+                    <directory>src/main/</directory>
+                    <includes>
+                        <include>assembly.xml</include>
+                    </includes>
+                </fileSet>
+                <fileSet encoding="UTF-8">
+                    <directory>src/test/java</directory>
+                    <includes>
+                        <include>**/*.*</include>
+                    </includes>
+                </fileSet>
+            </fileSets>
+        </module>
+
+        <module id="ERIC${flowPackage}_${CXP}" dir="ERIC__flowPackage_____CXP__" name="ERIC${flowPackage}_${CXP}">
+            <fileSets>
+                <fileSet encoding="UTF-8">
+                    <directory>src/main/scripts</directory>
+                    <includes>
+                        <include>**/*.sh</include>
+                    </includes>
+                </fileSet>
+                <fileSet encoding="UTF-8">
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>**/*.*</include>
+                    </includes>
+                </fileSet>
+                <fileSet encoding="UTF-8">
+                    <directory>src/main/python</directory>
+                    <includes>
+                        <include>**/*.*</include>
+                    </includes>
+                </fileSet>
+            </fileSets>
+        </module>
+
+        <module id="${rootArtifactId}-testsuite" dir="__rootArtifactId__-testsuite" name="${rootArtifactId}-testsuite">
+            <fileSets>
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
+                    <directory>src/test/java</directory>
+                    <includes>
+                        <include>**/*.java</include>
+                    </includes>
+                </fileSet>
+
+                <fileSet encoding="UTF-8">
+                    <directory>src/test/resources</directory>
+                    <includes>
+                        <include>**/*.*</include>
+                    </includes>
+                </fileSet>
+            </fileSets>
+        </module>
+    </modules>
+
+</archetype-descriptor>

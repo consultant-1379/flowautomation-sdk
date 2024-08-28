@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Hello World flow report schema body",
+  "description": "Hello World flow report schema body",
+  "type": "object",
+  "properties": {
+    "message": {
+      "name": "User Message",
+      "type": "string",
+      "default": "",
+      "objectGen": {
+        "binding": "variable:report:message"
+      }
+    }
+  },
+  "required": [
+    "message"
+  ]
+}

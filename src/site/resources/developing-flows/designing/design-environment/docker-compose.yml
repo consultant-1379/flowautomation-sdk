@@ -1,0 +1,53 @@
+version: '3.0'
+services:
+  httpd:
+    image: "armdocker.rnd.ericsson.se/proj_oss_releases/enm/fa-ui:${version:-latest}"
+    ports:
+      - "8282:80"
+      - "6666:6666"
+    container_name: apache
+
+  postgres:
+    container_name: db
+    image: "armdocker.rnd.ericsson.se/proj_oss_releases/enm/fa-db:${version:-latest}"
+    ports:
+      - "5431:5432"
+
+  access_control:
+    container_name: access-control
+    image: "armdocker.rnd.ericsson.se/proj_oss_releases/enm/fa-access-control:${version:-latest}"
+    ports:
+      - "1389:1389"
+      - "1636:1636"
+      - "4444:4444"
+    volumes:
+      - policies:/ericsson/tor/data/access_control/policies/dist
+      - data:/ericsson/tor/data
+      - idenmgmt:/ericsson/tor/data/idenmgmt
+
+  fa_jboss:
+    container_name: fa
+    image: "armdocker.rnd.ericsson.se/proj_oss_releases/enm/fa-service:${version:-latest}"
+    ports:
+      - "9999:9999"
+      - "9990:9990"
+      - "9090:9090"
+      - "8080:8080"
+      - "8787:8787"
+      - "4447:4447"
+    volumes:
+      - policies:/ericsson/tor/data/access_control/policies/dist
+      - data:/ericsson/tor/data
+      - idenmgmt:/ericsson/tor/data/idenmgmt
+    links:
+      - postgres:postgresql01
+      - access_control:ldap-remote
+      - access_control:ldap-local
+      - httpd:fa-httpd
+    depends_on:
+      - postgres
+      - access_control
+volumes:
+  policies:
+  data:
+  idenmgmt:

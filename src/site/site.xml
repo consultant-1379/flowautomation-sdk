@@ -1,0 +1,65 @@
+<project name="Flow Automation SDK Documentation">
+    <bannerLeft>
+        <name>Flow Automation SDK</name>
+    </bannerLeft>
+
+    <publishDate position="right"/>
+    <bannerRight>
+        <src>images/logo.png</src>
+    </bannerRight>
+
+    <body>
+        <head>
+            <![CDATA[
+             <script type="text/javascript">
+             $(document).ready(function () {
+                document.getElementsByClassName("well sidebar-nav")[1].hidden =true;
+             });
+             </script>
+        ]]>
+        </head>
+        <menu>
+            <item href="index.html" collapse="true" name="FA SDK Documentation">
+                <item href="getting-started/getting-started.html" collapse="true" name="Getting Started"/>
+                <item href="concepts/concepts.html" collapse="true" name="Concepts">
+                    <item href="concepts/standard-flow-process-model/standard-flow-process-model.html" collapse="true" name="Standard Flow Process Model" />
+                    <item href="concepts/flow-data-modeling/flow-data-modeling.html" collapse="true" name="Flow Data Modeling" />
+                </item>
+                <item href="developing-flows/developing-flows.html" collapse="true" name="Developing Flows">
+                    <item href="developing-flows/designing/designing.html" collapse="true" name="Designing">
+                        <item href="developing-flows/designing/design-environment/design-environment.html" collapse="true" name="Design Environment">
+                            <item href="developing-flows/designing/design-environment/flow-project-maven-archetype.html" name="Flow Project Maven Archetype"/>
+                            <item href="developing-flows/designing/design-environment/docker-design-runtime-environment.html" name="Docker Design Runtime Environment"/>
+                        </item>
+                        <item href="developing-flows/designing/bpmn-support/bpmn-support.html" collapse="true" name="BPMN Support"/>
+                        <item href="developing-flows/designing/variables/variables.html" collapse="true" name="Variables"/>
+                        <item href="developing-flows/designing/user-task/user-task.html" collapse="true" name="User Task"/>
+                    </item>
+                    <item href="developing-flows/testing/testing.html" collapse="true" name="Testing">
+                        <item href="developing-flows/testing/testing-flows-in-development-environment/testing-flows-in-development-environment.html" collapse="true" name="Testing Flows in Development Environment">
+                            <item href="developing-flows/testing/testing-flows-in-development-environment/testing-flow-execution/testing-flow-execution.html" collapse="true" name="Testing Flow Execution"/>
+                            <item href="developing-flows/testing/testing-flows-in-development-environment/testing-flow-scripts/testing-flow-scripts.html" collapse="true" name="Testing Flow Scripts"/>
+                        </item>
+                    </item>
+                </item>
+                <item href="example-flows/example-flows.html" collapse="true" name="Example Flows">
+                    <item href="example-flows/simpleCalculatorFlow/simpleCalculatorFlow.html" collapse="true" name="simpleCalculatorFlow"/>
+                    <item href="example-flows/sdkBasicFlowExample/sdkBasicFlowExample.html" collapse="true" name="sdkBasicFlowExample"/>
+                    <item href="example-flows/scripttaskTestFlow/scripttaskTestFlow.html" collapse="true" name="scripttaskTestFlow"/>
+                    <item href="example-flows/sdkBasicUserTaskFlowExample/sdkBasicUserTaskFlowExample.html" collapse="true" name="sdkBasicUserTaskFlowExample"/>
+                    <item href="example-flows/variableAndDataShowcase/variableAndDataShowcase.html" collapse="true" name="variableAndDataShowcase"/>
+                </item>                
+                <item href="javadoc/javadoc.html" collapse="true" name="Javadoc">
+                    <item href="javadoc/apidocs-sdk-flow-execution-test/index.html" collapse="true" name="Flow Execution Test API"/>
+                    <item href="javadoc/apidocs-sdk-flow-execution-script/index.html" collapse="true" name="Flow Script Test API"/>
+                </item>
+            </item>
+        </menu>
+    </body>
+
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.9</version>
+    </skin>
+</project>

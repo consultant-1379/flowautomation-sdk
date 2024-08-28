@@ -1,0 +1,12 @@
+{
+  "flowId": "${project.parent.groupId}.${project.parent.artifactId}",
+  "flowName": "Hello World",
+  "flowVersion": "${flow.version}",
+  "description": "This is a Hello World Flow that takes a message in setup phase and uses it in execute phase to update a report variable.",
+  "setup": {
+    "processId": "flow-setup"
+  },
+  "execute": {
+    "processId": "flow-execute"
+  }
+}
